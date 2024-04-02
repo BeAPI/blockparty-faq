@@ -2,8 +2,8 @@
 /**
  * Plugin Name:       Blockparty Faq
  * Description:       A Gutenberg block for SEO friendly FAQ in an accessible accordion
- * Requires at least: 5.8
- * Requires PHP:      7.2
+ * Requires at least: 6.2
+ * Requires PHP:      8.1
  * Version:           1.0.0
  * Plugin URI: https://beapi.fr
  * Author: Be API Technical team

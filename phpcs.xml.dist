@@ -30,7 +30,7 @@
         <exclude name="WordPress.PHP.DisallowShortTernary.Found"/>
     </rule>
 
-	<config name="minimum_supported_wp_version" value="5.8"/>
+	<config name="minimum_supported_wp_version" value="6.2"/>
 
 	<rule ref="WordPress.WP.I18n">
 		<properties>
