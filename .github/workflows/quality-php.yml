@@ -2,7 +2,15 @@ name: PHP Quality Checks
 
 on:
   pull_request:
+      paths:
+          - 'composer.json'
+          - 'includes/**'
+          - 'blockparty-faq.php'
   push:
+    paths:
+        - 'composer.json'
+        - 'includes/**'
+        - 'blockparty-faq.php'
     branches:
       - main
 

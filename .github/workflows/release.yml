@@ -1,5 +1,6 @@
 name: "Release new TAG"
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -40,9 +41,9 @@ jobs:
 
       - id: build-node
         name: "Build project CSS and JS"
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 14
+          node-version-file: 'package.json'
           cache: 'npm'
       - run: npm install
       - run: npm run build

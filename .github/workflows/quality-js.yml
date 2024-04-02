@@ -2,8 +2,12 @@ name: Javascript Quality Checks
 
 on:
   pull_request:
+      paths:
+          - 'src/**'
   push:
-    branches:
+      paths:
+          - 'src/**'
+      branches:
       - main
 
 # Cancels all previous workflow runs for pull requests that have not completed.
@@ -23,9 +27,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup NodeJS
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '14'
+            node-version-file: 'package.json'
 
       - name: Install npm dependencies
         run: npm ci

@@ -1,8 +1,8 @@
 {
   "apiVersion": 2,
   "name": "blockparty/faq",
-  "version": "0.1.0",
-  "title": "Blockpart Faq",
+  "version": "1.0.0",
+  "title": "Faq",
   "category": "design",
   "icon": "format-chat",
   "description": "SEO friendly FAQ module in an accessible accordion",
