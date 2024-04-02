@@ -1,0 +1,31 @@
+{
+	"name": "blockparty-faq",
+	"version": "1.0.0",
+	"description": "SEO friendly FAQ module in an accessible accordion",
+	"author": "Be API Technical team",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"start": "wp-scripts start",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"dependencies": {
+		"@wordpress/block-editor": "^12.22.0",
+		"@wordpress/blocks": "^12.31.0",
+		"@wordpress/components": "^27.2.0",
+		"@wordpress/i18n": "^4.54.0",
+		"@wordpress/icons": "^9.45.0",
+		"@wp-now/wp-now": "^0.1.66",
+		"lodash": "^4.17.21"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.5.0"
+	},
+	"volta": {
+		"node": "20.12.0"
+	}
+}

@@ -1,0 +1,22 @@
+{
+  "apiVersion": 2,
+  "name": "blockparty/faq",
+  "version": "1.0.0",
+  "title": "Faq",
+  "category": "design",
+  "icon": "format-chat",
+  "description": "SEO friendly FAQ module in an accessible accordion",
+  "supports": {
+	"html": false
+  },
+  "attributes": {
+	"questions": {
+	  "type": "array",
+	  "default": []
+	}
+  },
+  "textdomain": "blockparty-faq",
+  "editorScript": "file:build/index.js",
+  "editorStyle": "file:build/index.css",
+  "style": "file:./build/style-index.css"
+}
