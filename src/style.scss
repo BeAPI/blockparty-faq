@@ -1,0 +1,13 @@
+.wp-block-beapi-faq-block {
+
+	.faq {
+
+		&__trigger {
+			appearance: none;
+			background: transparent;
+			border: 0;
+			cursor: pointer;
+			width: 100%;
+		}
+	}
+}

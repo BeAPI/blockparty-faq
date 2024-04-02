@@ -1,0 +1,30 @@
+/.git export-ignore
+/.github export-ignore
+/.wordpress-org export-ignore
+/node_modules export-ignore -diff
+/tests export-ignore
+/vendor export-ignore -diff
+
+/.distignore export-ignore
+/.editorconfig export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/.nvmrc export-ignore
+/.plugin-data export-ignore
+/.wp-env.json export-ignore
+/CHANGELOG.md export-ignore
+/composer.json export-ignore
+/composer.lock export-ignore -diff
+/grumphp.yml export-ignore
+/LICENSE.md export-ignore
+/package.json export-ignore
+/package-lock.json export-ignore -diff
+/phpcs.xml.dist export-ignore
+/phpunit.xml.dist export-ignore
+/psalm.xml.dist export-ignore
+/phpcs.xml export-ignore
+/phpunit.xml export-ignore
+/psalm.xml export-ignore
+/README.md export-ignore
+/webpack.config.js export-ignore
+/yarn.lock export-ignore -diff
