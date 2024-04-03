@@ -4,7 +4,7 @@
  * Description:       A Gutenberg block for SEO friendly FAQ in an accessible accordion
  * Requires at least: 6.2
  * Requires PHP:      8.1
- * Version:           1.0.0
+ * Version:           1.0.1
  * Plugin URI: https://beapi.fr
  * Author: Be API Technical team
  * Author URI: https://beapi.fr
@@ -41,7 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Plugin constants
-define( 'BLOCKPARTY_FAQ_VERSION', '1.0.0' );
+define( 'BLOCKPARTY_FAQ_VERSION', '1.0.1' );
 
 // Plugin URL and PATH
 define( 'BLOCKPARTY_FAQ_DIR', plugin_dir_path( __FILE__ ) );
