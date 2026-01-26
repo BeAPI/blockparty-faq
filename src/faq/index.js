@@ -12,12 +12,14 @@ import './editor.scss';
 import Edit from './edit';
 import save from './save';
 import deprecated from './deprecated';
+import metadata from './block.json';
 
 // Register child blocks first
 import '../faq-item';
 
 // Register parent block
-registerBlockType( 'blockparty/faq', {
+registerBlockType( metadata.name, {
+	...metadata,
 	/**
 	 * @see ./edit.js
 	 */
@@ -27,6 +29,7 @@ registerBlockType( 'blockparty/faq', {
 	 * @see ./save.js
 	 */
 	save,
+
 	icon: help,
 
 	/**

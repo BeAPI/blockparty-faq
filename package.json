@@ -19,6 +19,7 @@
 		"make-json": "wp i18n make-json languages/blockparty-faq-fr_FR.po languages/ --no-purge"
 	},
 	"dependencies": {
+		"@beapi/be-a11y": "^1.7.2",
 		"@wordpress/block-editor": "^12.22.0",
 		"@wordpress/blocks": "^12.31.0",
 		"@wordpress/components": "^27.2.0",
