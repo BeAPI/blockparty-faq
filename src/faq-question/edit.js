@@ -9,10 +9,7 @@ import { RichText, InnerBlocks } from '@wordpress/block-editor';
  */
 import { __ } from '@wordpress/i18n';
 
-const ALLOWED_BLOCKS_SIMPLE = [
-	'core/heading',
-	'core/paragraph',
-];
+const ALLOWED_BLOCKS_SIMPLE = [ 'core/heading', 'core/paragraph' ];
 
 export default function Edit( { attributes, setAttributes } ) {
 	const { question, isAccordion = true } = attributes;
@@ -40,7 +37,10 @@ export default function Edit( { attributes, setAttributes } ) {
 							[
 								'core/paragraph',
 								{
-									placeholder: __( 'Question…?', 'blockparty-faq' ),
+									placeholder: __(
+										'Question…?',
+										'blockparty-faq'
+									),
 								},
 							],
 						] }
