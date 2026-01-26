@@ -1,8 +1,18 @@
 /**
  * WordPress dependencies
  */
-import { BlockControls, InnerBlocks, useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { ToolbarGroup, ToolbarButton, PanelBody, ToggleControl } from '@wordpress/components';
+import {
+	BlockControls,
+	InnerBlocks,
+	useBlockProps,
+	InspectorControls,
+} from '@wordpress/block-editor';
+import {
+	ToolbarGroup,
+	ToolbarButton,
+	PanelBody,
+	ToggleControl,
+} from '@wordpress/components';
 import { addCard } from '@wordpress/icons';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
@@ -11,12 +21,14 @@ import { useEffect } from '@wordpress/element';
 
 export default function Edit( { clientId, attributes, setAttributes } ) {
 	const { isAccordion = true } = attributes;
-	const blockProps = useBlockProps( {
-		className: 'faq__accordion',
-	} );
+	const blockProps = useBlockProps();
 
-	const { insertBlock, updateBlockAttributes } = useDispatch( 'core/block-editor' );
-	const { getBlocks } = useSelect( ( select ) => select( 'core/block-editor' ), [] );
+	const { insertBlock, updateBlockAttributes } =
+		useDispatch( 'core/block-editor' );
+	const { getBlocks } = useSelect(
+		( select ) => select( 'core/block-editor' ),
+		[]
+	);
 
 	// Synchronize isAccordion attribute to all child blocks
 	useEffect( () => {
@@ -68,16 +80,21 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 							'blockparty-faq'
 						) }
 						checked={ isAccordion }
-						onChange={ ( value ) => setAttributes( { isAccordion: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { isAccordion: value } )
+						}
+						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
 			</InspectorControls>
 			<div { ...blockProps }>
-				<InnerBlocks
-					allowedBlocks={ [ 'blockparty/faq-item' ] }
-					template={ [ [ 'blockparty/faq-item' ] ] }
-					templateLock={ false }
-				/>
+				<div className="faq__accordion">
+					<InnerBlocks
+						allowedBlocks={ [ 'blockparty/faq-item' ] }
+						template={ [ [ 'blockparty/faq-item' ] ] }
+						templateLock={ false }
+					/>
+				</div>
 			</div>
 		</>
 	);

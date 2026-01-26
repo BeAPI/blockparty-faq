@@ -11,6 +11,7 @@ import './style.scss';
 import './editor.scss';
 import Edit from './edit';
 import save from './save';
+import deprecated from './deprecated';
 
 // Register child blocks first
 import '../faq-item';
@@ -27,4 +28,10 @@ registerBlockType( 'blockparty/faq', {
 	 */
 	save,
 	icon: help,
+
+	/**
+	 * Migration from old format (questions array) to new format (InnerBlocks)
+	 * @see ./deprecated.js
+	 */
+	deprecated,
 } );
