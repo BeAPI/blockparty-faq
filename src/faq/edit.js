@@ -76,7 +76,7 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 					<ToggleControl
 						label={ __( 'Accordion behavior', 'blockparty-faq' ) }
 						help={ __(
-							'Enable accordion behavior with collapsible items. When disabled, all items are expanded by default.',
+							'If enabled, the HTML structure will be interpreted as an accordion from screen readers.',
 							'blockparty-faq'
 						) }
 						checked={ isAccordion }

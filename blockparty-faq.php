@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name:       Blockparty Faq
- * Description:       A Gutenberg block for SEO friendly FAQ in an accessible accordion
+ * Plugin Name:       Blockparty FAQ
+ * Description:       A FAQ block for WordPress Editor that provided structured data based on FAQ schema.
  * Requires at least: 6.2
  * Requires PHP:      8.1
  * Version:           1.0.2
@@ -50,6 +50,55 @@ define( 'BLOCKPARTY_FAQ_DIR', plugin_dir_path( __FILE__ ) );
 require_once BLOCKPARTY_FAQ_DIR . 'includes/hooks/schema.php';
 require_once BLOCKPARTY_FAQ_DIR . 'includes/schema/faq_schema.php';
 
+/**
+ * Load plugin text domain for PHP translations (PO/MO files).
+ *
+ * @since 1.0.2
+ *
+ * @return void
+ */
+function blockparty_faq_load_textdomain(): void {
+	load_plugin_textdomain(
+		'blockparty-faq',
+		false,
+		dirname( plugin_basename( __FILE__ ) ) . '/languages'
+	);
+}
+
+add_action( 'plugins_loaded', __NAMESPACE__ . '\\blockparty_faq_load_textdomain' );
+
+/**
+ * Load JavaScript translations (JSON files) for blocks.
+ *
+ * @since 1.0.2
+ *
+ * @return void
+ */
+function blockparty_faq_set_script_translations(): void {
+	if ( ! function_exists( 'wp_set_script_translations' ) ) {
+		return;
+	}
+
+	// WordPress generates handles for block scripts based on block name and script type
+	// For blockparty/faq with editorScript, the handle is: blockparty-faq-editor-script
+	$script_handle = 'blockparty-faq-editor-script';
+
+	wp_set_script_translations(
+		$script_handle,
+		'blockparty-faq',
+		BLOCKPARTY_FAQ_DIR . 'languages'
+	);
+}
+
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\blockparty_faq_set_script_translations', 1 );
+
+/**
+ * Initialize plugin blocks.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
 function blockparty_faq_init(): void {
 	// Register main block (from root block.json)
 	register_block_type( __DIR__ );

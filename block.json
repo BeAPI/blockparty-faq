@@ -5,7 +5,7 @@
   "version": "1.0.2",
   "title": "FAQ",
   "category": "design",
-  "description": "SEO friendly FAQ module in an accessible accordion",
+  "description": "A FAQ block for WordPress Editor that provided structured data based on FAQ schema.",
   "supports": {
     "html": false,
     "innerBlocks": true

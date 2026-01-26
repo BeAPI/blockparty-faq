@@ -6,7 +6,7 @@
 	"title": "FAQ Item",
 	"category": "design",
 	"parent": [ "blockparty/faq" ],
-	"description": "A FAQ item containing a question and an answer",
+	"description": "A FAQ item containing a question and an answer.",
 	"supports": {
 		"html": false,
 		"inserter": false,
