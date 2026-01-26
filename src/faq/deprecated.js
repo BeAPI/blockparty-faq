@@ -2,8 +2,7 @@
  * WordPress dependencies
  */
 import { createBlock, parse } from '@wordpress/blocks';
-import { useBlockProps } from '@wordpress/block-editor';
-import { RichText } from '@wordpress/block-editor';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 /**
  * Migration script to convert old FAQ format to new InnerBlocks format.

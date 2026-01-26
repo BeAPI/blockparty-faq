@@ -1,8 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps } from '@wordpress/block-editor';
-import { RichText, InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, RichText, InnerBlocks } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
 	const { question, isAccordion = true } = attributes;
