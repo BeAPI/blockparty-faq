@@ -116,7 +116,10 @@ export default function FaqList( { questions, onChange } ) {
 								onChange={ ( content ) =>
 									updateQuestion( item.id, content )
 								} // Store updated content as a block attribute
-								placeholder={ __( 'Question…?', 'blockparty-faq' ) } // Display this text before any content has been added by the user
+								placeholder={ __(
+									'Question…?',
+									'blockparty-faq'
+								) } // Display this text before any content has been added by the user
 							/>
 						</div>
 					</h3>
