@@ -20,13 +20,13 @@
 		"@wordpress/blocks": "^12.31.0",
 		"@wordpress/components": "^27.2.0",
 		"@wordpress/i18n": "^4.54.0",
-		"@wordpress/icons": "^9.45.0",
+		"@wordpress/icons": "^11.5.0",
 		"@wp-now/wp-now": "^0.1.66",
 		"lodash": "^4.17.21"
 	},
 	"devDependencies": {
-		"@wordpress/env": "^10.38.0",
-		"@wordpress/scripts": "latest"
+		"@wordpress/env": "latest",
+		"@wordpress/scripts": "^27.5.0"
 	},
 	"volta": {
 		"node": "20.12.0"
