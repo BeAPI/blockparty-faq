@@ -51,7 +51,15 @@ require_once BLOCKPARTY_FAQ_DIR . 'includes/hooks/schema.php';
 require_once BLOCKPARTY_FAQ_DIR . 'includes/schema/faq_schema.php';
 
 function blockparty_faq_init(): void {
+	// Register main block (from root block.json)
 	register_block_type( __DIR__ );
+
+	// Register child blocks
+	// These blocks are also registered via JavaScript in src/index.js,
+	// but we need to register them in PHP so WordPress knows about their block.json metadata
+	register_block_type( __DIR__ . '/src/faq-item' );
+	register_block_type( __DIR__ . '/src/faq-question' );
+	register_block_type( __DIR__ . '/src/faq-answer' );
 }
 
 add_action( 'init', __NAMESPACE__ . '\\blockparty_faq_init' );

@@ -1,22 +1,17 @@
 {
-  "apiVersion": 2,
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
   "name": "blockparty/faq",
   "version": "1.0.2",
-  "title": "Faq",
+  "title": "FAQ",
   "category": "design",
-  "icon": "format-chat",
   "description": "SEO friendly FAQ module in an accessible accordion",
   "supports": {
-	"html": false
-  },
-  "attributes": {
-	"questions": {
-	  "type": "array",
-	  "default": []
-	}
+    "html": false,
+    "innerBlocks": true
   },
   "textdomain": "blockparty-faq",
-  "editorScript": "file:build/index.js",
-  "editorStyle": "file:build/index.css",
+  "editorScript": "file:./build/index.js",
+  "editorStyle": "file:./build/index.css",
   "style": "file:./build/style-index.css"
 }
