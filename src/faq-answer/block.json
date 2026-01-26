@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "blockparty/faq-answer",
+	"version": "1.0.2",
+	"title": "FAQ Answer",
+	"category": "design",
+	"parent": [ "blockparty/faq-item" ],
+	"description": "Content of the FAQ answer.",
+	"supports": {
+		"html": false,
+		"inserter": false,
+		"reusable": false
+	},
+	"attributes": {
+		"isAccordion": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"textdomain": "blockparty-faq"
+}

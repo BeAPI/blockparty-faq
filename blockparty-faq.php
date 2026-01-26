@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name:       Blockparty Faq
- * Description:       A Gutenberg block for SEO friendly FAQ in an accessible accordion
+ * Plugin Name:       Blockparty FAQ
+ * Description:       A FAQ block for WordPress Editor that provided structured data based on FAQ schema.
  * Requires at least: 6.2
  * Requires PHP:      8.1
  * Version:           1.0.2
@@ -50,8 +50,49 @@ define( 'BLOCKPARTY_FAQ_DIR', plugin_dir_path( __FILE__ ) );
 require_once BLOCKPARTY_FAQ_DIR . 'includes/hooks/schema.php';
 require_once BLOCKPARTY_FAQ_DIR . 'includes/schema/faq_schema.php';
 
+/**
+ * Initialize plugin blocks.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
 function blockparty_faq_init(): void {
-	register_block_type( __DIR__ );
+	load_plugin_textdomain( 'blockparty-faq', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+
+	// Register main block (from src/faq/block.json)
+	register_block_type( __DIR__ . '/build/faq' );
+
+	// Register child blocks
+	// These blocks are also registered via JavaScript in src/index.js,
+	// but we need to register them in PHP so WordPress knows about their block.json metadata
+	register_block_type( __DIR__ . '/build/faq-item' );
+	register_block_type( __DIR__ . '/build/faq-question' );
+	register_block_type( __DIR__ . '/build/faq-answer' );
+
+	// Load translations for JS
+	wp_set_script_translations( 'blockparty-faq-editor-script', 'blockparty-faq', BLOCKPARTY_FAQ_DIR . 'languages' );
+
+	// Pass PHP values to main script
+	$constants = [
+		'accordionConfig' => apply_filters(
+			'beapi_faq_block_config',
+			[
+				'allowMultiple'   => true,
+				'closedDefault'   => true,
+				'forceExpand'     => false,
+				'hasAnimation'    => true,
+				'openMultiple'    => false,
+				'panelSelector'   => '.faq__panel',
+				'prefixId'        => 'block-faq',
+				'triggerSelector' => '.faq__trigger',
+			]
+		),
+	];
+
+	wp_localize_script( 'blockparty-faq-view-script', 'beapiFaqBlock', $constants );
+
+	do_action( 'blockparty_faq_init' );
 }
 
 add_action( 'init', __NAMESPACE__ . '\\blockparty_faq_init' );
