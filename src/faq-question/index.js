@@ -11,8 +11,10 @@ import './style.scss';
 import './editor.scss';
 import Edit from './edit';
 import save from './save';
+import metadata from './block.json';
 
-registerBlockType( 'blockparty/faq-question', {
+registerBlockType( metadata.name, {
+	...metadata,
 	/**
 	 * @see ./edit.js
 	 */
