@@ -10,6 +10,12 @@
 		"html": false,
 		"innerBlocks": true
 	},
+	"attributes": {
+		"isAccordion": {
+			"type": "boolean",
+			"default": true
+		}
+	},
 	"textdomain": "blockparty-faq",
 	"editorScript": "file:./index.js",
 	"viewScript": "file:./script.js",
