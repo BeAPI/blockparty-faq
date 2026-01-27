@@ -44,7 +44,7 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 						itemBlock.attributes.isAccordion !== isAccordion
 					) {
 						updateBlockAttributes( itemBlock.clientId, {
-							isAccordion: isAccordion,
+							isAccordion,
 						} );
 					}
 				} );

@@ -10,8 +10,8 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
  * Old format: questions array in attributes
  * New format: InnerBlocks with faq-item blocks
  *
- * @param {Object} attributes The block attributes.
- * @param {Array} innerBlocks The inner blocks.
+ * @param {Object} attributes  The block attributes.
+ * @param {Array}  innerBlocks The inner blocks.
  * @return {Array} Tuple array [attributes, innerBlocks] when migrating to InnerBlocks.
  */
 function migrate( attributes, innerBlocks ) {
@@ -43,7 +43,7 @@ function migrate( attributes, innerBlocks ) {
 		// Create faq-question block
 		const questionBlock = createBlock( 'blockparty/faq-question', {
 			question: question.question || '',
-			isAccordion: isAccordion,
+			isAccordion,
 		} );
 
 		// Create faq-answer block with content
@@ -95,7 +95,7 @@ function migrate( attributes, innerBlocks ) {
 		const answerBlock = createBlock(
 			'blockparty/faq-answer',
 			{
-				isAccordion: isAccordion,
+				isAccordion,
 			},
 			answerInnerBlocks
 		);
@@ -112,7 +112,7 @@ function migrate( attributes, innerBlocks ) {
 	// migrate() must return a tuple array: [attributes, innerBlocks]
 	return [
 		{
-			isAccordion: isAccordion,
+			isAccordion,
 		},
 		migratedBlocks,
 	];
@@ -122,10 +122,10 @@ function migrate( attributes, innerBlocks ) {
  * Check if a block is eligible for migration.
  *
  * @param {Object} attributes The block attributes.
- * @param {Object} innerBlocks The inner blocks.
  * @return {boolean} Whether the block should be migrated.
  */
-function isEligible( attributes, innerBlocks ) {
+// eslint-disable-next-line no-unused-vars
+function isEligible( attributes ) {
 	// If questions attribute exists and has content, block needs migration
 	return (
 		attributes.questions &&
@@ -139,7 +139,7 @@ function isEligible( attributes, innerBlocks ) {
  * Matches the old HTML structure to allow proper block validation.
  * The old format had: <div class="wp-block-blockparty-faq"><div class="faq__accordion">...
  *
- * @param {Object} props Component props.
+ * @param {Object} props            Component props.
  * @param {Object} props.attributes Block attributes.
  * @return {JSX.Element} Saved block markup.
  */
