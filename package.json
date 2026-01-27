@@ -1,6 +1,6 @@
 {
 	"name": "blockparty-faq",
-	"version": "1.0.2",
+	"version": "2.0.0",
 	"description": "SEO friendly FAQ module in an accessible accordion",
 	"author": "Be API Technical team",
 	"license": "GPL-2.0-or-later",
@@ -11,18 +11,25 @@
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"start": "wp-scripts start",
-		"packages-update": "wp-scripts packages-update"
+		"packages-update": "wp-scripts packages-update",
+		"start:env": "wp-env start --config=./wp-env.json",
+		"stop:env": "wp-env stop --config=./wp-env.json",
+		"setup:env": "wp-env run cli wp plugin install wordpress-seo --activate --allow-root",
+		"make-pot": "wp i18n make-pot . languages/blockparty-faq.pot --exclude=\"src\" --domain=blockparty-faq",
+		"make-json": "wp i18n make-json languages/blockparty-faq-fr_FR.po languages/ --no-purge"
 	},
 	"dependencies": {
+		"@beapi/be-a11y": "^1.7.2",
 		"@wordpress/block-editor": "^12.22.0",
 		"@wordpress/blocks": "^12.31.0",
 		"@wordpress/components": "^27.2.0",
 		"@wordpress/i18n": "^4.54.0",
-		"@wordpress/icons": "^9.45.0",
+		"@wordpress/icons": "^11.5.0",
 		"@wp-now/wp-now": "^0.1.66",
 		"lodash": "^4.17.21"
 	},
 	"devDependencies": {
+		"@wordpress/env": "latest",
 		"@wordpress/scripts": "^27.5.0"
 	},
 	"volta": {
