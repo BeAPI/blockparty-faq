@@ -79,3 +79,7 @@ Yoast SEO is required for the FAQ schema (JSON-LD) generation. It is installed a
 ### 2.0.1 - 2026-01-27
 
 - Fix build blocks
+
+### 2.0.2 - 2026-01-27
+
+- Add missing isAccordion attribute
