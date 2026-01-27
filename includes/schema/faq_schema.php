@@ -245,7 +245,7 @@ class FAQ_Schema {
 	 */
 	protected function add_accepted_answer_property( string $answer ): array {
 		// Allowed HTML elements and attributes for Schema.org FAQPage acceptedAnswer text property.
-		// Supports: headings, paragraphs, lists, formatting, links, quotes, images, and structure.
+		// Supports: headings, paragraphs, lists.
 		$allowed_html = [
 			'h1'         => [],
 			'h2'         => [],
@@ -266,27 +266,6 @@ class FAQ_Schema {
 			'strong'     => [],
 			'i'          => [],
 			'em'         => [],
-			'blockquote' => [
-				'cite' => [],
-			],
-			'cite'       => [],
-			'q'          => [
-				'cite' => [],
-			],
-			'img'        => [
-				'src'    => [],
-				'alt'    => [],
-				'title'  => [],
-				'width'  => [],
-				'height' => [],
-			],
-			'div'        => [
-				'class' => [],
-			],
-			'span'       => [
-				'class' => [],
-			],
-			'hr'         => [],
 		];
 
 		$data = [
