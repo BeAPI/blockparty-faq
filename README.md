@@ -75,3 +75,7 @@ Yoast SEO is required for the FAQ schema (JSON-LD) generation. It is installed a
 - **Complete internationalization** : Support for PO/MO translations for PHP and JSON for JavaScript
 - **Aligned build structure** : Reorganization to follow the `blockparty-accordion` model with `block.json` in each block directory
 - **Add/remove buttons** : Added buttons to add and remove FAQ items directly from the editor
+
+### 2.0.1 - 2026-01-27
+
+- Fix build blocks

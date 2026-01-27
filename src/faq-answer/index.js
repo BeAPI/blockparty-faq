@@ -2,6 +2,7 @@
  * WordPress dependencies
  */
 import { registerBlockType } from '@wordpress/blocks';
+import { postContent } from '@wordpress/icons';
 
 /**
  * Internal dependencies
@@ -10,9 +11,10 @@ import './style.scss';
 import './editor.scss';
 import Edit from './edit';
 import save from './save';
-import { postContent } from '@wordpress/icons';
+import metadata from './block.json';
 
-registerBlockType( 'blockparty/faq-answer', {
+registerBlockType( metadata.name, {
+	...metadata,
 	/**
 	 * @see ./edit.js
 	 */
@@ -22,6 +24,5 @@ registerBlockType( 'blockparty/faq-answer', {
 	 * @see ./save.js
 	 */
 	save,
-
 	icon: postContent,
 } );
