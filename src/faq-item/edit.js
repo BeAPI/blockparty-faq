@@ -1,8 +1,11 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, BlockControls } from '@wordpress/block-editor';
-import { InnerBlocks } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	BlockControls,
+	InnerBlocks,
+} from '@wordpress/block-editor';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { addCard, trash } from '@wordpress/icons';
 import { useSelect, useDispatch } from '@wordpress/data';

@@ -245,48 +245,27 @@ class FAQ_Schema {
 	 */
 	protected function add_accepted_answer_property( string $answer ): array {
 		// Allowed HTML elements and attributes for Schema.org FAQPage acceptedAnswer text property.
-		// Supports: headings, paragraphs, lists, formatting, links, quotes, images, and structure.
+		// Supports: headings, paragraphs, lists.
 		$allowed_html = [
-			'h1'         => [],
-			'h2'         => [],
-			'h3'         => [],
-			'h4'         => [],
-			'h5'         => [],
-			'h6'         => [],
-			'p'          => [],
-			'br'         => [],
-			'ol'         => [],
-			'ul'         => [],
-			'li'         => [],
-			'a'          => [
+			'h1'     => [],
+			'h2'     => [],
+			'h3'     => [],
+			'h4'     => [],
+			'h5'     => [],
+			'h6'     => [],
+			'p'      => [],
+			'br'     => [],
+			'ol'     => [],
+			'ul'     => [],
+			'li'     => [],
+			'a'      => [
 				'href'  => [],
 				'title' => [],
 			],
-			'b'          => [],
-			'strong'     => [],
-			'i'          => [],
-			'em'         => [],
-			'blockquote' => [
-				'cite' => [],
-			],
-			'cite'       => [],
-			'q'          => [
-				'cite' => [],
-			],
-			'img'        => [
-				'src'    => [],
-				'alt'    => [],
-				'title'  => [],
-				'width'  => [],
-				'height' => [],
-			],
-			'div'        => [
-				'class' => [],
-			],
-			'span'       => [
-				'class' => [],
-			],
-			'hr'         => [],
+			'b'      => [],
+			'strong' => [],
+			'i'      => [],
+			'em'     => [],
 		];
 
 		$data = [
