@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "blockparty/faq",
+  "version": "2.0.1",
+  "title": "FAQ",
+  "category": "design",
+  "description": "A FAQ block for WordPress Editor that provided structured data based on FAQ schema.",
+  "supports": {
+    "html": false,
+    "innerBlocks": true
+  },
+  "textdomain": "blockparty-faq",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./script.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
