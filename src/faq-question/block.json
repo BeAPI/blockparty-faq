@@ -10,7 +10,10 @@
 	"supports": {
 		"html": false,
 		"inserter": false,
-		"reusable": false
+		"reusable": false,
+		"typography": {
+			"fontSize": true
+		}
 	},
 	"attributes": {
 		"question": {
