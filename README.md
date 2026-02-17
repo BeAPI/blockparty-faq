@@ -83,3 +83,10 @@ Yoast SEO is required for the FAQ schema (JSON-LD) generation. It is installed a
 ### 2.0.2 - 2026-01-27
 
 - Add missing isAccordion attribute
+
+### 2.0.3 - 2026-02-17
+
+- Allow adding "Button" blocks in the answer content
+- Add spacing support for answers
+- Add font size support for the question
+- Strip HTML tags from the question in structured data
