@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "blockparty/faq-item",
+  "version": "2.0.3",
+  "title": "FAQ Item",
+  "category": "design",
+  "parent": [
+    "blockparty/faq"
+  ],
+  "description": "A FAQ item containing a question and an answer.",
+  "supports": {
+    "html": false,
+    "inserter": false,
+    "reusable": false,
+    "innerBlocks": true
+  },
+  "textdomain": "blockparty-faq",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
