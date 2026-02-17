@@ -226,7 +226,7 @@ class FAQ_Schema {
 			'@id'            => $url,
 			'position'       => $position,
 			'url'            => $url,
-			'name'           => esc_html( $question_text ),
+			'name'           => esc_html( wp_strip_all_tags( $question_text ) ),
 			'answerCount'    => 1,
 			'acceptedAnswer' => $this->add_accepted_answer_property( $answer_content ),
 		];
