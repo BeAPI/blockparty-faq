@@ -10,7 +10,12 @@
 	"supports": {
 		"html": false,
 		"inserter": false,
-		"reusable": false
+		"reusable": false,
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"blockGap": true
+		}
 	},
 	"attributes": {
 		"isAccordion": {
