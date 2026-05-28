@@ -90,3 +90,7 @@ Yoast SEO is required for the FAQ schema (JSON-LD) generation. It is installed a
 - Add spacing support for answers
 - Add font size support for the question
 - Strip HTML tags from the question in structured data
+
+### 2.0.4 - 2026-05-28
+
+- Add block example.
