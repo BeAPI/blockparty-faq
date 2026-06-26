@@ -5,24 +5,28 @@ import { useBlockProps, RichText, InnerBlocks } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
 	const { question, isAccordion = true } = attributes;
-	const blockProps = useBlockProps.save( {
-		className: 'faq__title',
-	} );
+	const blockProps = useBlockProps.save();
 
-	const TriggerTag = isAccordion ? 'button' : 'span';
-	const triggerProps = isAccordion
-		? { className: 'faq__trigger', 'aria-expanded': 'false' }
-		: { className: 'faq__trigger' };
+	if ( ! isAccordion ) {
+		return (
+			<h3 { ...blockProps }>
+				<InnerBlocks.Content />
+			</h3>
+		);
+	}
 
 	return (
 		<h3 { ...blockProps }>
-			<TriggerTag { ...triggerProps }>
-				{ isAccordion ? (
-					<RichText.Content tagName="span" value={ question } />
-				) : (
-					<InnerBlocks.Content />
-				) }
-			</TriggerTag>
+			<button
+				aria-expanded="false"
+				className="wp-block-blockparty-faq-trigger"
+			>
+				<RichText.Content
+					tagName="span"
+					className="wp-block-blockparty-faq-title"
+					value={ question }
+				/>
+			</button>
 		</h3>
 	);
 }

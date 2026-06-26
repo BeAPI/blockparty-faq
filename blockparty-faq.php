@@ -4,7 +4,7 @@
  * Description:       A FAQ block for WordPress Editor that provided structured data based on FAQ schema.
  * Requires at least: 6.2
  * Requires PHP:      8.1
- * Version:           2.0.3
+ * Version:           2.0.4
  * Plugin URI: https://beapi.fr
  * Author: Be API Technical team
  * Author URI: https://beapi.fr
@@ -41,7 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Plugin constants
-define( 'BLOCKPARTY_FAQ_VERSION', '2.0.3' );
+define( 'BLOCKPARTY_FAQ_VERSION', '2.0.4' );
 
 // Plugin URL and PATH
 define( 'BLOCKPARTY_FAQ_DIR', plugin_dir_path( __FILE__ ) );
@@ -83,9 +83,9 @@ function blockparty_faq_init(): void {
 				'forceExpand'     => false,
 				'hasAnimation'    => true,
 				'openMultiple'    => false,
-				'panelSelector'   => '.faq__panel',
+				'panelSelector'   => '.wp-block-blockparty-faq-answer',
 				'prefixId'        => 'block-faq',
-				'triggerSelector' => '.faq__trigger',
+				'triggerSelector' => '.wp-block-blockparty-faq-trigger',
 			]
 		),
 	];

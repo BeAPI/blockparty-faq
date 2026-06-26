@@ -3,8 +3,8 @@
  */
 import {
 	BlockControls,
-	InnerBlocks,
 	useBlockProps,
+	useInnerBlocksProps,
 	InspectorControls,
 } from '@wordpress/block-editor';
 import {
@@ -22,6 +22,11 @@ import { useEffect } from '@wordpress/element';
 export default function Edit( { clientId, attributes, setAttributes } ) {
 	const { isAccordion = true } = attributes;
 	const blockProps = useBlockProps();
+	const innerBlocksProps = useInnerBlocksProps( blockProps, {
+		allowedBlocks: [ 'blockparty/faq-item' ],
+		template: [ [ 'blockparty/faq-item' ] ],
+		templateLock: false,
+	} );
 
 	const { insertBlock, updateBlockAttributes } =
 		useDispatch( 'core/block-editor' );
@@ -34,7 +39,6 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 	useEffect( () => {
 		const innerBlocks = getBlocks( clientId );
 		innerBlocks.forEach( ( block ) => {
-			// Update faq-item blocks
 			if ( 'blockparty/faq-item' === block.name ) {
 				const itemInnerBlocks = getBlocks( block.clientId );
 				itemInnerBlocks.forEach( ( itemBlock ) => {
@@ -87,15 +91,7 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<div { ...blockProps }>
-				<div className="faq__accordion">
-					<InnerBlocks
-						allowedBlocks={ [ 'blockparty/faq-item' ] }
-						template={ [ [ 'blockparty/faq-item' ] ] }
-						templateLock={ false }
-					/>
-				</div>
-			</div>
+			<div { ...innerBlocksProps } />
 		</>
 	);
 }

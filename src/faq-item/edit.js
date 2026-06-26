@@ -3,8 +3,8 @@
  */
 import {
 	useBlockProps,
+	useInnerBlocksProps,
 	BlockControls,
-	InnerBlocks,
 } from '@wordpress/block-editor';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { addCard, trash } from '@wordpress/icons';
@@ -13,8 +13,14 @@ import { createBlock } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
 export default function Edit( { clientId } ) {
-	const blockProps = useBlockProps( {
-		className: 'faq__item',
+	const blockProps = useBlockProps();
+	const innerBlocksProps = useInnerBlocksProps( blockProps, {
+		allowedBlocks: [ 'blockparty/faq-question', 'blockparty/faq-answer' ],
+		template: [
+			[ 'blockparty/faq-question' ],
+			[ 'blockparty/faq-answer' ],
+		],
+		templateLock: 'all',
 	} );
 
 	const { insertBlock, removeBlock } = useDispatch( 'core/block-editor' );
@@ -26,7 +32,6 @@ export default function Edit( { clientId } ) {
 	const rootClientId = getBlockRootClientId( clientId );
 	const blockIndex = getBlockIndex( clientId );
 
-	// Get isAccordion from parent block (faq)
 	const parentBlock = rootClientId ? getBlock( rootClientId ) : null;
 	const isAccordion =
 		parentBlock?.attributes?.isAccordion !== undefined
@@ -61,18 +66,8 @@ export default function Edit( { clientId } ) {
 					/>
 				</ToolbarGroup>
 			</BlockControls>
-			<div { ...blockProps }>
-				<InnerBlocks
-					allowedBlocks={ [
-						'blockparty/faq-question',
-						'blockparty/faq-answer',
-					] }
-					template={ [
-						[ 'blockparty/faq-question' ],
-						[ 'blockparty/faq-answer' ],
-					] }
-					templateLock="all"
-				/>
+			<div { ...useBlockProps() }>
+				<div { ...innerBlocksProps } />
 			</div>
 		</>
 	);

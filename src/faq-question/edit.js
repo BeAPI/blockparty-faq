@@ -15,9 +15,7 @@ const ALLOWED_BLOCKS_SIMPLE = [ 'core/heading', 'core/paragraph' ];
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { question, isAccordion = true } = attributes;
-	const blockProps = useBlockProps( {
-		className: 'faq__title',
-	} );
+	const blockProps = useBlockProps();
 
 	const innerBlocks = useSelect(
 		( select ) => select( 'core/block-editor' ).getBlocks( clientId ),
@@ -26,21 +24,14 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 	const { replaceInnerBlocks } = useDispatch( 'core/block-editor' );
 
-	// When isAccordion changes from true to false and innerBlocks are empty,
-	// create a core/heading block with the question attribute value
-	// When isAccordion changes from false to true, remove innerBlocks and
-	// transfer their content to the question attribute
 	useEffect( () => {
 		if ( ! isAccordion && innerBlocks.length === 0 && question ) {
-			// Switch from accordion to non-accordion: create heading block
 			const headingBlock = createBlock( 'core/heading', {
 				level: 3,
 				content: question,
 			} );
 			replaceInnerBlocks( clientId, [ headingBlock ] );
 		} else if ( isAccordion && innerBlocks.length > 0 ) {
-			// Switch from non-accordion to accordion: extract content from innerBlocks
-			// Get the text content from the first block (usually a heading or paragraph)
 			const firstBlock = innerBlocks[ 0 ];
 			let extractedContent = '';
 
@@ -50,12 +41,10 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 				extractedContent = firstBlock.attributes?.content || '';
 			}
 
-			// Update the question attribute with the extracted content
 			if ( extractedContent && extractedContent !== question ) {
 				setAttributes( { question: extractedContent } );
 			}
 
-			// Remove innerBlocks
 			replaceInnerBlocks( clientId, [] );
 		}
 	}, [
@@ -69,36 +58,35 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 	return (
 		<h3 { ...blockProps }>
-			<div className="faq__trigger">
-				{ isAccordion ? (
-					<RichText
-						tagName="span"
-						value={ question }
-						onChange={ ( content ) =>
-							setAttributes( { question: content } )
-						}
-						placeholder={ __( 'Question…?', 'blockparty-faq' ) }
-						allowedFormats={ [] }
-					/>
-				) : (
-					<InnerBlocks
-						allowedBlocks={ ALLOWED_BLOCKS_SIMPLE }
-						template={ [
-							[
-								'core/heading',
-								{
-									level: 3,
-									placeholder: __(
-										'Question…?',
-										'blockparty-faq'
-									),
-								},
-							],
-						] }
-						templateLock={ false }
-					/>
-				) }
-			</div>
+			{ isAccordion ? (
+				<RichText
+					tagName="span"
+					className="wp-block-blockparty-faq-trigger"
+					value={ question }
+					onChange={ ( content ) =>
+						setAttributes( { question: content } )
+					}
+					placeholder={ __( 'Question…?', 'blockparty-faq' ) }
+					allowedFormats={ [] }
+				/>
+			) : (
+				<InnerBlocks
+					allowedBlocks={ ALLOWED_BLOCKS_SIMPLE }
+					template={ [
+						[
+							'core/heading',
+							{
+								level: 3,
+								placeholder: __(
+									'Question…?',
+									'blockparty-faq'
+								),
+							},
+						],
+					] }
+					templateLock={ false }
+				/>
+			) }
 		</h3>
 	);
 }

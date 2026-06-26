@@ -1,13 +1,115 @@
-.wp-block-blockparty-faq-block {
+/* style */
+.wp-block-blockparty-faq {
+	--wp--blockparty--faq--border: 1px solid #000;
+	--wp--blockparty--faq--font-size: var(--wp--preset--font-size--h-3);
+	--wp--blockparty--faq--font-weight: 400;
+	--wp--blockparty--faq--padding: 1rem 0;
+	--wp--blockparty--faq--padding-with-background: 1rem;
+	--wp--blockparty--faq--icon-size: 24px;
 
-	.faq {
+	&-question {
+		position: relative;
+		display: flex;
+		align-items: center;
+		padding: var(--wp--blockparty--faq--padding) !important;
+		border-bottom: var(--wp--blockparty--faq--border);
+	}
 
-		&__trigger {
-			appearance: none;
-			background: transparent;
-			border: 0;
-			cursor: pointer;
-			width: 100%;
+	&-item:where(:has([aria-expanded="false"])) &-answer {
+		display: none;
+	}
+
+	&-answer__inner {
+		padding: var(--wp--blockparty--faq--padding);
+	}
+
+	&-trigger {
+		position: relative;
+		display: flex;
+		align-items: center;
+		width: 100%;
+		padding: 0;
+		font-size: var(--wp--blockparty--faq--font-size);
+		font-weight: var(--wp--blockparty--faq--font-weight);
+		text-align: left;
+		background-color: transparent;
+		border: 0;
+		border-radius: 0;
+		box-shadow: none;
+		appearance: none;
+
+		&::after {
+			position: absolute;
+			top: 50%;
+			right: 0.5rem;
+			width: 0.5rem;
+			height: 0.5rem;
+			pointer-events: none;
+			content: "";
+			border: solid currentcolor;
+			border-width: 0 2px 2px 0;
+			transform: translateY(-60%) rotate(45deg);
+		}
+
+		&[aria-expanded="true"]::after {
+			transform: translateY(-50%) rotate(-135deg);
+		}
+	}
+
+	&-question.has-background,
+	.has-background &-question,
+	.has-background &-answer__inner {
+		padding: var(--wp--blockparty--faq--padding-with-background) !important;
+	}
+
+	// Legacy markup (2.0.x)
+	.faq__title {
+		position: relative;
+		display: flex;
+		align-items: center;
+		padding: var(--wp--blockparty--faq--padding) !important;
+		border-bottom: var(--wp--blockparty--faq--border);
+	}
+
+	.faq__item:where(:has([aria-expanded="false"])) .faq__panel {
+		display: none;
+	}
+
+	.faq__panel {
+		padding: var(--wp--blockparty--faq--padding);
+	}
+
+	.faq__trigger {
+		position: relative;
+		display: flex;
+		align-items: center;
+		width: 100%;
+		padding: 0;
+		font-size: var(--wp--blockparty--faq--font-size);
+		font-weight: var(--wp--blockparty--faq--font-weight);
+		text-align: left;
+		background-color: transparent;
+		border: 0;
+		border-radius: 0;
+		box-shadow: none;
+		appearance: none;
+		cursor: pointer;
+
+		&::after {
+			position: absolute;
+			top: 50%;
+			right: 0.5rem;
+			width: 0.5rem;
+			height: 0.5rem;
+			pointer-events: none;
+			content: "";
+			border: solid currentcolor;
+			border-width: 0 2px 2px 0;
+			transform: translateY(-60%) rotate(45deg);
+		}
+
+		&[aria-expanded="true"]::after {
+			transform: translateY(-50%) rotate(-135deg);
 		}
 	}
 }
