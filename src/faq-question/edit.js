@@ -13,8 +13,20 @@ import { __ } from '@wordpress/i18n';
 
 const ALLOWED_BLOCKS_SIMPLE = [ 'core/heading', 'core/paragraph' ];
 
-export default function Edit( { attributes, setAttributes, clientId } ) {
-	const { question, isAccordion = true } = attributes;
+export default function Edit( {
+	attributes,
+	setAttributes,
+	clientId,
+	context = {},
+} ) {
+	const {
+		question,
+		isAccordion = true,
+		headingLevel: savedHeadingLevel,
+	} = attributes;
+	const headingLevel =
+		context[ 'blockparty/headingLevel' ] ?? savedHeadingLevel ?? 3;
+	const HeadingTag = `h${ headingLevel }`;
 	const blockProps = useBlockProps();
 
 	const innerBlocks = useSelect(
@@ -56,20 +68,9 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		setAttributes,
 	] );
 
-	return (
-		<h3 { ...blockProps }>
-			{ isAccordion ? (
-				<RichText
-					tagName="span"
-					className="wp-block-blockparty-faq-trigger"
-					value={ question }
-					onChange={ ( content ) =>
-						setAttributes( { question: content } )
-					}
-					placeholder={ __( 'Question…?', 'blockparty-faq' ) }
-					allowedFormats={ [] }
-				/>
-			) : (
+	if ( ! isAccordion ) {
+		return (
+			<h3 { ...blockProps }>
 				<InnerBlocks
 					allowedBlocks={ ALLOWED_BLOCKS_SIMPLE }
 					template={ [
@@ -86,7 +87,22 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					] }
 					templateLock={ false }
 				/>
-			) }
-		</h3>
+			</h3>
+		);
+	}
+
+	return (
+		<HeadingTag { ...blockProps }>
+			<RichText
+				tagName="span"
+				className="wp-block-blockparty-faq-trigger"
+				value={ question }
+				onChange={ ( content ) =>
+					setAttributes( { question: content } )
+				}
+				placeholder={ __( 'Question…?', 'blockparty-faq' ) }
+				allowedFormats={ [] }
+			/>
+		</HeadingTag>
 	);
 }

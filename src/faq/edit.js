@@ -6,21 +6,81 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 	InspectorControls,
+	useBlockEditContext,
+	store as blockEditorStore,
 } from '@wordpress/block-editor';
 import {
 	ToolbarGroup,
 	ToolbarButton,
 	PanelBody,
 	ToggleControl,
+	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis -- ToggleGroupControl is not yet a stable export in @wordpress/components 27.
+	__experimentalToggleGroupControl as ToggleGroupControl,
+	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
+	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
 } from '@wordpress/components';
-import { addCard } from '@wordpress/icons';
+import {
+	addCard,
+	headingLevel2,
+	headingLevel3,
+	headingLevel4,
+	headingLevel5,
+	headingLevel6,
+} from '@wordpress/icons';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 
+const QUESTION_BLOCK = 'blockparty/faq-question';
+const HEADING_LEVELS = [ 2, 3, 4, 5, 6 ];
+
+const HEADING_LEVEL_ICONS = {
+	2: headingLevel2,
+	3: headingLevel3,
+	4: headingLevel4,
+	5: headingLevel5,
+	6: headingLevel6,
+};
+
+function collectQuestionBlocks( blocks ) {
+	return blocks.flatMap( ( block ) => {
+		const questions = block.name === QUESTION_BLOCK ? [ block ] : [];
+
+		return questions.concat(
+			collectQuestionBlocks( block.innerBlocks || [] )
+		);
+	} );
+}
+
+function useSyncQuestionHeadingLevels( headingLevel, isAccordion ) {
+	const { clientId } = useBlockEditContext();
+	const { updateBlockAttributes } = useDispatch( blockEditorStore );
+	const questionBlocks = useSelect(
+		( select ) => {
+			const { getBlocksByClientId } = select( blockEditorStore );
+			const [ faqBlock ] = getBlocksByClientId( clientId );
+
+			return collectQuestionBlocks( faqBlock?.innerBlocks || [] );
+		},
+		[ clientId ]
+	);
+
+	useEffect( () => {
+		if ( ! isAccordion ) {
+			return;
+		}
+
+		questionBlocks.forEach( ( block ) => {
+			if ( block.attributes.headingLevel !== headingLevel ) {
+				updateBlockAttributes( block.clientId, { headingLevel } );
+			}
+		} );
+	}, [ headingLevel, isAccordion, questionBlocks, updateBlockAttributes ] );
+}
+
 export default function Edit( { clientId, attributes, setAttributes } ) {
-	const { isAccordion = true } = attributes;
+	const { isAccordion = true, headingLevel = 3 } = attributes;
 	const blockProps = useBlockProps();
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
 		allowedBlocks: [ 'blockparty/faq-item' ],
@@ -34,6 +94,8 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 		( select ) => select( 'core/block-editor' ),
 		[]
 	);
+
+	useSyncQuestionHeadingLevels( headingLevel, isAccordion );
 
 	// Synchronize isAccordion attribute to all child blocks
 	useEffect( () => {
@@ -58,7 +120,10 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 
 	const onAddItem = () => {
 		const newItem = createBlock( 'blockparty/faq-item', {}, [
-			createBlock( 'blockparty/faq-question', { isAccordion } ),
+			createBlock( 'blockparty/faq-question', {
+				isAccordion,
+				headingLevel,
+			} ),
 			createBlock( 'blockparty/faq-answer', { isAccordion } ),
 		] );
 		insertBlock( newItem, undefined, clientId );
@@ -89,6 +154,42 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 						}
 						__nextHasNoMarginBottom
 					/>
+					{ isAccordion && (
+						<ToggleGroupControl
+							label={ __(
+								'Question heading level',
+								'blockparty-faq'
+							) }
+							help={ __(
+								'Define the heading level for each FAQ question.',
+								'blockparty-faq'
+							) }
+							value={ headingLevel }
+							isBlock
+							__next40pxDefaultSize
+							onChange={ ( value ) =>
+								setAttributes( {
+									headingLevel: Number( value ),
+								} )
+							}
+						>
+							{ HEADING_LEVELS.map( ( level ) => (
+								<ToggleGroupControlOptionIcon
+									key={ level }
+									value={ level }
+									icon={ HEADING_LEVEL_ICONS[ level ] }
+									label={ sprintf(
+										/* translators: %d: heading level number (2–6). */
+										__(
+											'Heading level %d',
+											'blockparty-faq'
+										),
+										level
+									) }
+								/>
+							) ) }
+						</ToggleGroupControl>
+					) }
 				</PanelBody>
 			</InspectorControls>
 			<div { ...innerBlocksProps } />

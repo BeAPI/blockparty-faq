@@ -4,8 +4,9 @@
 import { useBlockProps, RichText, InnerBlocks } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
-	const { question, isAccordion = true } = attributes;
+	const { question, isAccordion = true, headingLevel = 3 } = attributes;
 	const blockProps = useBlockProps.save();
+	const HeadingTag = `h${ headingLevel }`;
 
 	if ( ! isAccordion ) {
 		return (
@@ -16,7 +17,7 @@ export default function save( { attributes } ) {
 	}
 
 	return (
-		<h3 { ...blockProps }>
+		<HeadingTag { ...blockProps }>
 			<button
 				aria-expanded="false"
 				className="wp-block-blockparty-faq-trigger"
@@ -27,6 +28,6 @@ export default function save( { attributes } ) {
 					value={ question }
 				/>
 			</button>
-		</h3>
+		</HeadingTag>
 	);
 }

@@ -37,10 +37,14 @@ export default function Edit( { clientId } ) {
 		parentBlock?.attributes?.isAccordion !== undefined
 			? parentBlock.attributes.isAccordion
 			: true;
+	const headingLevel = parentBlock?.attributes?.headingLevel ?? 3;
 
 	const onAddItem = () => {
 		const newItem = createBlock( 'blockparty/faq-item', {}, [
-			createBlock( 'blockparty/faq-question', { isAccordion } ),
+			createBlock( 'blockparty/faq-question', {
+				isAccordion,
+				headingLevel,
+			} ),
 			createBlock( 'blockparty/faq-answer', { isAccordion } ),
 		] );
 		insertBlock( newItem, blockIndex + 1, rootClientId );
