@@ -26,3 +26,6 @@ Thumbs.db
 .wp-env.override.json
 phpcs.xml
 phpunit.xml
+
+# Composer
+composer.lock
