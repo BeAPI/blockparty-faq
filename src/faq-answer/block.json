@@ -5,9 +5,7 @@
 	"version": "2.0.3",
 	"title": "FAQ Answer",
 	"category": "design",
-	"parent": [
-		"blockparty/faq-item"
-	],
+	"parent": [ "blockparty/faq-item" ],
 	"description": "Content of the FAQ answer.",
 	"supports": {
 		"html": false,

@@ -70,9 +70,7 @@ export default function Edit( { clientId } ) {
 					/>
 				</ToolbarGroup>
 			</BlockControls>
-			<div { ...useBlockProps() }>
-				<div { ...innerBlocksProps } />
-			</div>
+			<div { ...innerBlocksProps } />
 		</>
 	);
 }
