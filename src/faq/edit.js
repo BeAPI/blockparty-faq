@@ -141,11 +141,11 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 				</ToolbarGroup>
 			</BlockControls>
 			<InspectorControls>
-				<PanelBody title={ __( 'FAQ Settings', 'blockparty-faq' ) }>
+				<PanelBody title={ __( 'Settings', 'blockparty-faq' ) }>
 					<ToggleControl
 						label={ __( 'Accordion behavior', 'blockparty-faq' ) }
 						help={ __(
-							'If enabled, the HTML structure will be interpreted as an accordion from screen readers.',
+							'If enabled, the FAQ will be displayed as an accordion component.',
 							'blockparty-faq'
 						) }
 						checked={ isAccordion }
