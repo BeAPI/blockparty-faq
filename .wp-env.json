@@ -1,6 +1,7 @@
 {
 	"plugins": [
 		".",
+		".wp-env/plugins/seo-by-rank-math",
 		".wp-env/plugins/wordpress-seo",
 		".wp-env/plugins/wp-seopress"
 	]

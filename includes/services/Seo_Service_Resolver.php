@@ -14,6 +14,7 @@ class Seo_Service_Resolver {
 	 */
 	private const SERVICE_CLASSES = [
 		Yoast_Seo_Service::class,
+		Rank_Math_Seo_Service::class,
 		Seopress_Seo_Service::class,
 	];
 

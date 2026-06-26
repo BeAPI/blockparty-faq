@@ -49,6 +49,7 @@
 		"roave/security-advisories": "dev-latest",
 		"roots/wordpress-no-content": "^6.0",
 		"wp-coding-standards/wpcs": "^3.3",
+		"wp-plugin/seo-by-rank-math": "1.0.272",
 		"wp-plugin/wordpress-seo": "27.9",
 		"wp-plugin/wp-seopress": "10.0.1"
 	},

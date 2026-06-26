@@ -51,6 +51,7 @@ require_once BLOCKPARTY_FAQ_DIR . 'includes/schema/FAQ_Schema_Generator.php';
 require_once BLOCKPARTY_FAQ_DIR . 'includes/schema/FAQ_Schema.php';
 require_once BLOCKPARTY_FAQ_DIR . 'includes/services/Seo_Service_Interface.php';
 require_once BLOCKPARTY_FAQ_DIR . 'includes/services/Yoast_Seo_Service.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/services/Rank_Math_Seo_Service.php';
 require_once BLOCKPARTY_FAQ_DIR . 'includes/services/Seopress_Seo_Service.php';
 require_once BLOCKPARTY_FAQ_DIR . 'includes/services/Seo_Service_Resolver.php';
 

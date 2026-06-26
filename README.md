@@ -36,7 +36,7 @@ A Gutenberg block for SEO friendly FAQ in an accessible accordion.
    npm run env:start
    ```
 
-   Yoast SEO and SEOPress are mounted and activated automatically via `.wp-env.json`.
+   Yoast SEO, Rank Math, and SEOPress are mounted automatically via `.wp-env.json`.
 
 ### Available Scripts
 
@@ -47,7 +47,7 @@ A Gutenberg block for SEO friendly FAQ in an accessible accordion.
 
 ### Note
 
-FAQ structured data (JSON-LD) requires Yoast SEO or SEOPress. Both plugins are available in the local wp-env environment; deactivate one in the WordPress admin if you need to test a single integration. SEO plugin files are not versioned in the repository (installed via Composer into `.wp-env/plugins/`).
+FAQ structured data (JSON-LD) requires Yoast SEO, Rank Math, or SEOPress. All three plugins are available in the local wp-env environment; keep only one active in the WordPress admin when testing a specific integration. SEO plugin files are not versioned in the repository (installed via Composer into `.wp-env/plugins/`).
 
 ## Changelog
 
