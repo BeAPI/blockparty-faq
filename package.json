@@ -12,11 +12,11 @@
 		"lint:js": "wp-scripts lint-js",
 		"start": "wp-scripts start",
 		"packages-update": "wp-scripts packages-update",
-		"start:env": "wp-env start --config=./wp-env.json",
-		"stop:env": "wp-env stop --config=./wp-env.json",
-		"setup:env": "wp-env run cli wp plugin install wordpress-seo --activate --allow-root",
 		"make-pot": "wp i18n make-pot . languages/blockparty-faq.pot --exclude=\"src\" --domain=blockparty-faq",
-		"make-json": "wp i18n make-json languages/blockparty-faq-fr_FR.po languages/ --no-purge"
+		"make-json": "wp i18n make-json languages/blockparty-faq-fr_FR.po languages/ --no-purge",
+		"env:start": "wp-env start --config=./wp-env.json",
+		"env:stop": "wp-env stop --config=./wp-env.json",
+		"env:setup": "wp-env run cli wp plugin install wordpress-seo --activate --allow-root"
 	},
 	"dependencies": {
 		"@beapi/be-a11y": "^1.7.2",
