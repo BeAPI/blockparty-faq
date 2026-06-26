@@ -14,9 +14,8 @@
 		"packages-update": "wp-scripts packages-update",
 		"make-pot": "wp i18n make-pot . languages/blockparty-faq.pot --exclude=\"src\" --domain=blockparty-faq",
 		"make-json": "wp i18n make-json languages/blockparty-faq-fr_FR.po languages/ --no-purge",
-		"env:start": "wp-env start --config=./wp-env.json",
-		"env:stop": "wp-env stop --config=./wp-env.json",
-		"env:setup": "wp-env run cli wp plugin install wordpress-seo --activate --allow-root"
+		"env:start": "wp-env start",
+		"env:stop": "wp-env stop"
 	},
 	"dependencies": {
 		"@beapi/be-a11y": "^1.7.2",

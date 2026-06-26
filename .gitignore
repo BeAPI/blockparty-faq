@@ -29,3 +29,6 @@ phpunit.xml
 
 # Composer
 composer.lock
+
+# Plugins
+.wp-env/plugins/

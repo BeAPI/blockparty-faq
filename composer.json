@@ -27,6 +27,13 @@
 			"php": "8.1"
 		}
 	},
+	"extra": {
+		"installer-paths": {
+			".wp-env/plugins/{$name}/": [
+				"type:wordpress-plugin"
+			]
+		}
+	},
 	"require": {
 		"php": "^8.1 | ^8.2 | ^8.3 | ^8.4",
 		"ext-json": "*",
@@ -41,8 +48,17 @@
 		"phpro/grumphp-shim": "^1.5",
 		"roave/security-advisories": "dev-latest",
 		"roots/wordpress-no-content": "^6.0",
-		"wp-coding-standards/wpcs": "^3.3"
+		"wp-coding-standards/wpcs": "^3.3",
+		"wp-plugin/wordpress-seo": "27.9",
+		"wp-plugin/wp-seopress": "10.0.1"
 	},
+	"repositories": [
+		{
+			"name": "wp-packages",
+			"type": "composer",
+			"url": "https://repo.wp-packages.org"
+		}
+	],
 	"scripts": {
 		"cs": "./vendor/bin/phpcs",
 		"cb": "./vendor/bin/phpcbf"

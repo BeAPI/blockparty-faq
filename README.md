@@ -24,32 +24,30 @@ A Gutenberg block for SEO friendly FAQ in an accessible accordion.
    npm run build
    ```
 
-4. Start the WordPress environment and install Yoast SEO:
+4. Install PHP dependencies (downloads SEO plugins into `.wp-env/plugins/`):
 
    ```bash
-   npm run setup:env
+   composer install
    ```
 
-   **Note:** On Windows, you may need to run the commands separately:
+5. Start the WordPress environment:
 
    ```bash
-   npm run start:env
-   # Wait for WordPress to be ready (about 10-15 seconds)
-   npm run setup
+   npm run env:start
    ```
+
+   Yoast SEO and SEOPress are mounted and activated automatically via `.wp-env.json`.
 
 ### Available Scripts
 
 - `npm run build` - Build the blocks for production
 - `npm run start` - Start the development server with hot reload
-- `npm run start:env` - Start the WordPress environment (wp-env)
-- `npm run stop:env` - Stop the WordPress environment
-- `npm run install:yoast` - Install and activate Yoast SEO plugin (required for schema generation)
-- `npm run setup:env` - Start wp-env and install Yoast SEO in one command
+- `npm run env:start` - Start the WordPress environment (wp-env)
+- `npm run env:stop` - Stop the WordPress environment
 
 ### Note
 
-Yoast SEO is required for the FAQ schema (JSON-LD) generation. It is installed automatically via `npm run setup:env` but is not versioned in the repository.
+FAQ structured data (JSON-LD) requires Yoast SEO or SEOPress. Both plugins are available in the local wp-env environment; deactivate one in the WordPress admin if you need to test a single integration. SEO plugin files are not versioned in the repository (installed via Composer into `.wp-env/plugins/`).
 
 ## Changelog
 

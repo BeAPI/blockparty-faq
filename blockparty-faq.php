@@ -46,9 +46,16 @@ define( 'BLOCKPARTY_FAQ_VERSION', '2.0.3' );
 // Plugin URL and PATH
 define( 'BLOCKPARTY_FAQ_DIR', plugin_dir_path( __FILE__ ) );
 
+// Schema & SEO services
+require_once BLOCKPARTY_FAQ_DIR . 'includes/schema/FAQ_Schema_Generator.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/schema/FAQ_Schema.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/services/Seo_Service_Interface.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/services/Yoast_Seo_Service.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/services/Seopress_Seo_Service.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/services/Seo_Service_Resolver.php';
+
 // Hooks
-require_once BLOCKPARTY_FAQ_DIR . 'includes/hooks/schema.php';
-require_once BLOCKPARTY_FAQ_DIR . 'includes/schema/faq_schema.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/hooks/Schema_Hooks.php';
 
 /**
  * Initialize plugin blocks.
