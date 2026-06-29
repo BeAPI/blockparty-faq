@@ -1,21 +1,20 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
 	const { isAccordion = true } = attributes;
-	const blockProps = useBlockProps.save( {
-		className: 'faq__panel',
+	const blockProps = useBlockProps.save(
+		isAccordion ? { role: 'region' } : {}
+	);
+	const innerBlocksProps = useInnerBlocksProps.save( {
+		className: 'wp-block-blockparty-faq-answer__inner',
 	} );
 
-	const divProps = isAccordion
-		? { ...blockProps, role: 'region' }
-		: blockProps;
-
 	return (
-		<div { ...divProps }>
-			<InnerBlocks.Content />
+		<div { ...blockProps }>
+			<div { ...innerBlocksProps } />
 		</div>
 	);
 }

@@ -83,9 +83,9 @@ function blockparty_faq_init(): void {
 				'forceExpand'     => false,
 				'hasAnimation'    => true,
 				'openMultiple'    => false,
-				'panelSelector'   => '.faq__panel',
+				'panelSelector'   => '.wp-block-blockparty-faq-answer',
 				'prefixId'        => 'block-faq',
-				'triggerSelector' => '.faq__trigger',
+				'triggerSelector' => '.wp-block-blockparty-faq-trigger',
 			]
 		),
 	];
