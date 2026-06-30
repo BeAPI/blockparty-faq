@@ -60,6 +60,11 @@
 			"url": "https://repo.wp-packages.org"
 		}
 	],
+	"autoload": {
+		"psr-4": {
+			"Blockparty\\Faq\\": "includes/"
+		}
+	},
 	"scripts": {
 		"cs": "./vendor/bin/phpcs",
 		"cb": "./vendor/bin/phpcbf"
