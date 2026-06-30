@@ -126,12 +126,57 @@ class Seopress_Seo_Service implements Seo_Service_Interface {
 			return null;
 		}
 
+		$existing_questions = $this->normalize_main_entity( $json['mainEntity'] ?? [] );
+		$merged_questions   = array_merge( $existing_questions, $questions );
+
 		$json['@type']      = 'FAQPage';
-		$json['mainEntity'] = $questions;
+		$json['mainEntity'] = $this->renumber_question_positions( $merged_questions );
 		$json['@context']   = $json['@context'] ?? 'https://schema.org';
 		$json['inLanguage'] = $json['inLanguage'] ?? get_bloginfo( 'language' );
 
 		return $json;
+	}
+
+	/**
+	 * Normalize FAQPage mainEntity to a list of Question entries.
+	 *
+	 * @param mixed $main_entity FAQPage mainEntity value.
+	 *
+	 * @return array<int, array<string, mixed>>
+	 */
+	private function normalize_main_entity( $main_entity ): array {
+		if ( empty( $main_entity ) || ! is_array( $main_entity ) ) {
+			return [];
+		}
+
+		if ( isset( $main_entity['@type'] ) ) {
+			return [ $main_entity ];
+		}
+
+		return array_values(
+			array_filter(
+				$main_entity,
+				static fn( $question ) => is_array( $question ) && ! empty( $question )
+			)
+		);
+	}
+
+	/**
+	 * Ensure sequential position values on merged FAQ questions.
+	 *
+	 * @param array<int, array<string, mixed>> $questions Question entries.
+	 *
+	 * @return array<int, array<string, mixed>>
+	 */
+	private function renumber_question_positions( array $questions ): array {
+		$position = 1;
+
+		foreach ( $questions as $index => $question ) {
+			$questions[ $index ]['position'] = $position;
+			++$position;
+		}
+
+		return $questions;
 	}
 
 	/**
