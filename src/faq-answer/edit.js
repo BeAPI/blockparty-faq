@@ -13,24 +13,24 @@ const ALLOWED_BLOCKS = [
 ];
 
 export default function Edit() {
-	const blockProps = useBlockProps( {
-		className: 'faq__panel',
-	} );
+	const blockProps = useBlockProps();
 
 	return (
-		<div { ...blockProps } role="region">
-			<InnerBlocks
-				allowedBlocks={ ALLOWED_BLOCKS }
-				template={ [
-					[
-						'core/paragraph',
-						{
-							placeholder: __( 'Answer…', 'blockparty-faq' ),
-						},
-					],
-				] }
-				templateLock={ false }
-			/>
+		<div { ...blockProps }>
+			<div className="wp-block-blockparty-faq-answer__inner">
+				<InnerBlocks
+					allowedBlocks={ ALLOWED_BLOCKS }
+					template={ [
+						[
+							'core/paragraph',
+							{
+								placeholder: __( 'Answer…', 'blockparty-faq' ),
+							},
+						],
+					] }
+					templateLock={ false }
+				/>
+			</div>
 		</div>
 	);
 }

@@ -1,0 +1,39 @@
+{
+	"translation-revision-date": "2026-06-26 15:28+0200",
+	"generator": "WP-CLI\/2.11.0",
+	"source": "build\/faq\/index.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "fr_FR",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"Add FAQ item": [
+				"Ajouter un \u00e9l\u00e9ment"
+			],
+			"Remove FAQ item": [
+				"Supprimer l\u2019\u00e9l\u00e9ment"
+			],
+			"Settings": [
+				"R\u00e9glages"
+			],
+			"Accordion behavior": [
+				"Comportement d\u2019accord\u00e9on"
+			],
+			"If enabled, the FAQ will be displayed as an accordion component.": [
+				"Si cette option est activ\u00e9e, la FAQ s'affichera sous forme d'accord\u00e9on."
+			],
+			"Question heading level": [
+				"Niveau de titre de la question"
+			],
+			"Define the heading level for each FAQ question.": [
+				"D\u00e9finissez le niveau de titre pour chaque question de la FAQ."
+			],
+			"Heading level %d": [
+				"Niveau de titre %d"
+			]
+		}
+	}
+}

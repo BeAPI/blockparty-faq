@@ -4,7 +4,7 @@
  * Description:       A FAQ block for WordPress Editor that provided structured data based on FAQ schema.
  * Requires at least: 6.2
  * Requires PHP:      8.1
- * Version:           2.0.3
+ * Version:           2.1.0
  * Plugin URI: https://beapi.fr
  * Author: Be API Technical team
  * Author URI: https://beapi.fr
@@ -40,15 +40,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
 
+if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
+	include_once __DIR__ . '/vendor/autoload.php';
+}
+
 // Plugin constants
-define( 'BLOCKPARTY_FAQ_VERSION', '2.0.3' );
+define( 'BLOCKPARTY_FAQ_VERSION', '2.1.0' );
 
 // Plugin URL and PATH
 define( 'BLOCKPARTY_FAQ_DIR', plugin_dir_path( __FILE__ ) );
 
+// Schema & SEO services
+require_once BLOCKPARTY_FAQ_DIR . 'includes/Schema/FAQ_Schema_Generator.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/Schema/FAQ_Schema.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/Services/Seo_Service_Interface.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/Services/Yoast_Seo_Service.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/Services/Rank_Math_Seo_Service.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/Services/Seopress_Seo_Service.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/Services/Seo_Service_Resolver.php';
+
 // Hooks
-require_once BLOCKPARTY_FAQ_DIR . 'includes/hooks/schema.php';
-require_once BLOCKPARTY_FAQ_DIR . 'includes/schema/faq_schema.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/Hooks/Schema_Hooks.php';
 
 /**
  * Initialize plugin blocks.
@@ -83,9 +95,9 @@ function blockparty_faq_init(): void {
 				'forceExpand'     => false,
 				'hasAnimation'    => true,
 				'openMultiple'    => false,
-				'panelSelector'   => '.faq__panel',
+				'panelSelector'   => '.wp-block-blockparty-faq-answer',
 				'prefixId'        => 'block-faq',
-				'triggerSelector' => '.faq__trigger',
+				'triggerSelector' => '.wp-block-blockparty-faq-trigger',
 			]
 		),
 	];

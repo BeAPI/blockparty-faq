@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { createBlock, parse } from '@wordpress/blocks';
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useBlockProps, RichText, InnerBlocks } from '@wordpress/block-editor';
 
 /**
  * Migration script to convert old FAQ format to new InnerBlocks format.
@@ -185,12 +185,42 @@ function deprecatedSave( { attributes } ) {
 }
 
 /**
+ * Save function for deprecated 2.0.x nested InnerBlocks format with faq__accordion wrapper.
+ *
+ * @return {JSX.Element} Saved block markup.
+ */
+function deprecatedNestedSave() {
+	const blockProps = useBlockProps.save();
+
+	return (
+		<div { ...blockProps }>
+			<div className="faq__accordion">
+				<InnerBlocks.Content />
+			</div>
+		</div>
+	);
+}
+
+/**
  * Deprecated block configuration for migration from old format.
  *
  * Old format: questions array in attributes
  * New format: InnerBlocks with faq-item blocks
  */
 const deprecated = [
+	{
+		attributes: {
+			isAccordion: {
+				type: 'boolean',
+				default: true,
+			},
+		},
+		supports: {
+			html: false,
+			innerBlocks: true,
+		},
+		save: deprecatedNestedSave,
+	},
 	{
 		attributes: {
 			questions: {

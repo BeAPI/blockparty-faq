@@ -1,16 +1,11 @@
 /**
  * WordPress dependencies
  */
-import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
 export default function save() {
 	const blockProps = useBlockProps.save();
+	const innerBlocksProps = useInnerBlocksProps.save( blockProps );
 
-	return (
-		<div { ...blockProps }>
-			<div className="faq__accordion">
-				<InnerBlocks.Content />
-			</div>
-		</div>
-	);
+	return <div { ...innerBlocksProps } />;
 }
