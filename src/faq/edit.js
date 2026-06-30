@@ -6,7 +6,6 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 	InspectorControls,
-	useBlockEditContext,
 	store as blockEditorStore,
 } from '@wordpress/block-editor';
 import {
@@ -30,7 +29,7 @@ import {
 import { useDispatch, useSelect } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
 import { __, sprintf } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
+import { useEffect, useLayoutEffect } from '@wordpress/element';
 
 const QUESTION_BLOCK = 'blockparty/faq-question';
 const HEADING_LEVELS = [ 2, 3, 4, 5, 6 ];
@@ -53,30 +52,46 @@ function collectQuestionBlocks( blocks ) {
 	} );
 }
 
-function useSyncQuestionHeadingLevels( headingLevel, isAccordion ) {
-	const { clientId } = useBlockEditContext();
-	const { updateBlockAttributes } = useDispatch( blockEditorStore );
-	const questionBlocks = useSelect(
-		( select ) => {
-			const { getBlocksByClientId } = select( blockEditorStore );
-			const [ faqBlock ] = getBlocksByClientId( clientId );
+function syncQuestionHeadingLevels(
+	clientId,
+	headingLevel,
+	isAccordion,
+	{ getBlocksByClientId, updateBlockAttributes }
+) {
+	if ( ! isAccordion ) {
+		return;
+	}
 
-			return collectQuestionBlocks( faqBlock?.innerBlocks || [] );
-		},
-		[ clientId ]
-	);
+	const [ faqBlock ] = getBlocksByClientId( clientId );
+	const questionBlocks = collectQuestionBlocks( faqBlock?.innerBlocks || [] );
 
-	useEffect( () => {
-		if ( ! isAccordion ) {
-			return;
+	questionBlocks.forEach( ( block ) => {
+		if ( block.attributes.headingLevel !== headingLevel ) {
+			updateBlockAttributes( block.clientId, { headingLevel } );
 		}
+	} );
+}
 
-		questionBlocks.forEach( ( block ) => {
-			if ( block.attributes.headingLevel !== headingLevel ) {
-				updateBlockAttributes( block.clientId, { headingLevel } );
-			}
+function useSyncQuestionHeadingLevels(
+	clientId,
+	headingLevel,
+	isAccordion,
+	blockEditor
+) {
+	const { getBlocksByClientId, updateBlockAttributes } = blockEditor;
+
+	useLayoutEffect( () => {
+		syncQuestionHeadingLevels( clientId, headingLevel, isAccordion, {
+			getBlocksByClientId,
+			updateBlockAttributes,
 		} );
-	}, [ headingLevel, isAccordion, questionBlocks, updateBlockAttributes ] );
+	}, [
+		clientId,
+		headingLevel,
+		isAccordion,
+		getBlocksByClientId,
+		updateBlockAttributes,
+	] );
 }
 
 export default function Edit( { clientId, attributes, setAttributes } ) {
@@ -89,13 +104,19 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 	} );
 
 	const { insertBlock, updateBlockAttributes } =
-		useDispatch( 'core/block-editor' );
-	const { getBlocks } = useSelect(
-		( select ) => select( 'core/block-editor' ),
+		useDispatch( blockEditorStore );
+	const blockEditor = useSelect(
+		( select ) => select( blockEditorStore ),
 		[]
 	);
+	const { getBlocks, getBlocksByClientId } = blockEditor;
 
-	useSyncQuestionHeadingLevels( headingLevel, isAccordion );
+	useSyncQuestionHeadingLevels(
+		clientId,
+		headingLevel,
+		isAccordion,
+		blockEditor
+	);
 
 	// Synchronize isAccordion attribute to all child blocks
 	useEffect( () => {
@@ -149,9 +170,21 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 							'blockparty-faq'
 						) }
 						checked={ isAccordion }
-						onChange={ ( value ) =>
-							setAttributes( { isAccordion: value } )
-						}
+						onChange={ ( value ) => {
+							setAttributes( { isAccordion: value } );
+
+							if ( value ) {
+								syncQuestionHeadingLevels(
+									clientId,
+									headingLevel,
+									true,
+									{
+										getBlocksByClientId,
+										updateBlockAttributes,
+									}
+								);
+							}
+						} }
 						__nextHasNoMarginBottom
 					/>
 					{ isAccordion && (
@@ -167,11 +200,22 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 							value={ headingLevel }
 							isBlock
 							__next40pxDefaultSize
-							onChange={ ( value ) =>
+							onChange={ ( value ) => {
+								const newHeadingLevel = Number( value );
+
 								setAttributes( {
-									headingLevel: Number( value ),
-								} )
-							}
+									headingLevel: newHeadingLevel,
+								} );
+								syncQuestionHeadingLevels(
+									clientId,
+									newHeadingLevel,
+									isAccordion,
+									{
+										getBlocksByClientId,
+										updateBlockAttributes,
+									}
+								);
+							} }
 						>
 							{ HEADING_LEVELS.map( ( level ) => (
 								<ToggleGroupControlOptionIcon
