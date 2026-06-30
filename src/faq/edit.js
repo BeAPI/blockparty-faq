@@ -72,13 +72,12 @@ function syncQuestionHeadingLevels(
 	} );
 }
 
-function useSyncQuestionHeadingLevels(
-	clientId,
-	headingLevel,
-	isAccordion,
-	blockEditor
-) {
-	const { getBlocksByClientId, updateBlockAttributes } = blockEditor;
+function useSyncQuestionHeadingLevels( clientId, headingLevel, isAccordion ) {
+	const { getBlocksByClientId } = useSelect(
+		( select ) => select( blockEditorStore ),
+		[]
+	);
+	const { updateBlockAttributes } = useDispatch( blockEditorStore );
 
 	useLayoutEffect( () => {
 		syncQuestionHeadingLevels( clientId, headingLevel, isAccordion, {
@@ -111,12 +110,7 @@ export default function Edit( { clientId, attributes, setAttributes } ) {
 	);
 	const { getBlocks, getBlocksByClientId } = blockEditor;
 
-	useSyncQuestionHeadingLevels(
-		clientId,
-		headingLevel,
-		isAccordion,
-		blockEditor
-	);
+	useSyncQuestionHeadingLevels( clientId, headingLevel, isAccordion );
 
 	// Synchronize isAccordion attribute to all child blocks
 	useEffect( () => {
