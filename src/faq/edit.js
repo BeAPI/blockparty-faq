@@ -73,6 +73,15 @@ function syncQuestionHeadingLevels(
 }
 
 function useSyncQuestionHeadingLevels( clientId, headingLevel, isAccordion ) {
+	const questionBlocks = useSelect(
+		( select ) => {
+			const { getBlocksByClientId } = select( blockEditorStore );
+			const [ faqBlock ] = getBlocksByClientId( clientId );
+
+			return collectQuestionBlocks( faqBlock?.innerBlocks || [] );
+		},
+		[ clientId ]
+	);
 	const { getBlocksByClientId } = useSelect(
 		( select ) => select( blockEditorStore ),
 		[]
@@ -88,6 +97,7 @@ function useSyncQuestionHeadingLevels( clientId, headingLevel, isAccordion ) {
 		clientId,
 		headingLevel,
 		isAccordion,
+		questionBlocks,
 		getBlocksByClientId,
 		updateBlockAttributes,
 	] );
