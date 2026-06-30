@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "blockparty/faq",
+  "version": "2.1.0",
+  "title": "FAQ",
+  "category": "design",
+  "description": "A FAQ block for WordPress Editor that provided structured data based on FAQ schema.",
+  "supports": {
+    "html": false,
+    "innerBlocks": true
+  },
+  "attributes": {
+    "isAccordion": {
+      "type": "boolean",
+      "default": true
+    },
+    "headingLevel": {
+      "type": "number",
+      "default": 3,
+      "enum": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  "providesContext": {
+    "blockparty/headingLevel": "headingLevel"
+  },
+  "example": {
+    "attributes": {
+      "isAccordion": true
+    },
+    "innerBlocks": [
+      {
+        "name": "blockparty/faq-item",
+        "innerBlocks": [
+          {
+            "name": "blockparty/faq-question",
+            "attributes": {
+              "question": "Lorem ipsum"
+            }
+          },
+          {
+            "name": "blockparty/faq-answer",
+            "attributes": {
+              "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "textdomain": "blockparty-faq",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./script.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

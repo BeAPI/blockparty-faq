@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "blockparty/faq-question",
+  "version": "2.1.0",
+  "title": "FAQ Question",
+  "category": "design",
+  "parent": [
+    "blockparty/faq-item"
+  ],
+  "description": "Content of the FAQ question.",
+  "usesContext": [
+    "blockparty/headingLevel"
+  ],
+  "supports": {
+    "html": false,
+    "inserter": false,
+    "reusable": false,
+    "typography": {
+      "fontSize": true
+    }
+  },
+  "attributes": {
+    "question": {
+      "type": "string",
+      "default": ""
+    },
+    "isAccordion": {
+      "type": "boolean",
+      "default": true
+    },
+    "headingLevel": {
+      "type": "number",
+      "default": 3,
+      "enum": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  "textdomain": "blockparty-faq",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
