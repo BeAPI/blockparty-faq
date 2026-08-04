@@ -44,6 +44,7 @@ A Gutenberg block for SEO friendly FAQ in an accessible accordion.
 - `npm run start` - Start the development server with hot reload
 - `npm run env:start` - Start the WordPress environment (wp-env)
 - `npm run env:stop` - Stop the WordPress environment
+- `npm run bump -- <patch|minor|major|x.y.z>` - Bump the plugin version across package, blocks, PHP, and docs
 
 ### Note
 
