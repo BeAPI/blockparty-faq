@@ -109,9 +109,6 @@ Yes. The front-end accordion uses `@beapi/be-a11y` with proper ARIA attributes (
 
 == Upgrade Notice ==
 
-= 2.1.1 =
-TBD
-
 = 2.1.0 =
 Adds Rank Math and SEOPress support, configurable question heading levels, and updated block markup. Existing content is preserved via deprecated save handlers.
 
