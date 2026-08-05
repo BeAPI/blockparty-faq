@@ -4,6 +4,7 @@
 /config
 /node_modules
 /tests
+/bin
 
 .distignore
 .editorconfig

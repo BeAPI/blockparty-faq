@@ -1,6 +1,6 @@
 {
 	"name": "blockparty-faq",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"description": "SEO friendly FAQ module in an accessible accordion",
 	"author": "Be API Technical team",
 	"license": "GPL-2.0-or-later",
@@ -15,7 +15,8 @@
 		"make-pot": "wp i18n make-pot . languages/blockparty-faq.pot --exclude=\"src\" --domain=blockparty-faq",
 		"make-json": "wp i18n make-json languages/blockparty-faq-fr_FR.po languages/ --no-purge",
 		"env:start": "wp-env start",
-		"env:stop": "wp-env stop"
+		"env:stop": "wp-env stop",
+		"bump": "bash bin/bump.sh"
 	},
 	"dependencies": {
 		"@beapi/be-a11y": "^1.7.2",
