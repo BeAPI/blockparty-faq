@@ -4,7 +4,7 @@ Tags:              block, faq, accordion, gutenberg, schema, seo, accessibility
 Requires at least: 6.2
 Tested up to:      6.8
 Requires PHP:      8.1
-Stable tag:        2.1.0
+Stable tag:        2.1.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,9 @@ Yes. All FAQ blocks on a page are aggregated into a single FAQPage schema entry.
 Yes. The front-end accordion uses `@beapi/be-a11y` with proper ARIA attributes (`aria-expanded`, `role="region"`) and keyboard support.
 
 == Changelog ==
+
+= 2.1.1 - 2026-08-04 =
+* Performance improvements removed script blocking time.
 
 = 2.1.0 - 2026-06-30 =
 * Added configurable FAQ question heading level (h2–h6).
