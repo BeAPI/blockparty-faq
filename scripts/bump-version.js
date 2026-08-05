@@ -315,39 +315,6 @@ const updateChangelogMd = ( nextVersion, date ) => {
 };
 
 /**
- * Prepend a changelog stub in README.md.
- *
- * @param {string} nextVersion New version.
- * @param {string} date        Release date (YYYY-MM-DD).
- * @return {void}
- */
-const updateReadmeMd = ( nextVersion, date ) => {
-	const relativePath = 'README.md';
-	let contents = readFile( relativePath );
-
-	if ( contents.includes( `### ${ nextVersion } -` ) ) {
-		throw new Error(
-			`README.md already contains an entry for ${ nextVersion }.`
-		);
-	}
-
-	const stub = `### ${ nextVersion } - ${ date }
-
-- TBD
-
-`;
-
-	contents = replaceOnce(
-		contents,
-		'## Changelog\n\n',
-		`## Changelog\n\n${ stub }`,
-		`Changelog heading in ${ relativePath }`
-	);
-
-	writeFile( relativePath, contents );
-};
-
-/**
  * Main entry point.
  *
  * @return {void}
@@ -408,9 +375,6 @@ const main = () => {
 
 	updateChangelogMd( nextVersion, date );
 	updated.push( 'CHANGELOG.md' );
-
-	updateReadmeMd( nextVersion, date );
-	updated.push( 'README.md' );
 
 	console.log( `Bumped version ${ currentVersion } → ${ nextVersion }` );
 	console.log( 'Updated files:' );
