@@ -4,7 +4,7 @@
 /node_modules export-ignore -diff
 /tests export-ignore
 /vendor export-ignore -diff
-/scripts export-ignore
+/bin export-ignore
 /.distignore export-ignore
 /.editorconfig export-ignore
 /.gitattributes export-ignore
