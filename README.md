@@ -50,6 +50,10 @@ A Gutenberg block for SEO friendly FAQ in an accessible accordion.
 
 FAQ structured data (JSON-LD) requires Yoast SEO, Rank Math, or SEOPress. All three plugins are available in the local wp-env environment; keep only one active in the WordPress admin when testing a specific integration. SEO plugin files are not versioned in the repository (installed via Composer into `.wp-env/plugins/`).
 
+## Workflow deployment
+
+See the [release process](DEPLOYMENT.md). 
+
 ## Changelog
 
 See [readme.txt](readme.txt) and [CHANGELOG.md](CHANGELOG.md) for the full version history.
