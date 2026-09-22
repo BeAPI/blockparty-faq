@@ -61,6 +61,7 @@ require_once BLOCKPARTY_FAQ_DIR . 'includes/Services/Seo_Service_Resolver.php';
 
 // Hooks
 require_once BLOCKPARTY_FAQ_DIR . 'includes/Hooks/Schema_Hooks.php';
+require_once BLOCKPARTY_FAQ_DIR . 'includes/Hooks/Polylang_Hooks.php';
 
 /**
  * Initialize plugin blocks.
