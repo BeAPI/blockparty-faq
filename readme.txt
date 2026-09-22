@@ -4,7 +4,7 @@ Tags:              block, faq, accordion, gutenberg, schema, seo, accessibility
 Requires at least: 6.2
 Tested up to:      6.8
 Requires PHP:      8.1
-Stable tag:        2.1.1
+Stable tag:        2.1.2
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,9 @@ Yes. The front-end accordion uses `@beapi/be-a11y` with proper ARIA attributes (
 
 == Changelog ==
 
+= 2.1.2 - 2026-09-22 =
+* Fixed FAQ question attribute sync with Polylang Autopoly to prevent block validation errors after translation.
+
 = 2.1.1 - 2026-08-04 =
 * Performance improvements removed script blocking time.
 
@@ -108,6 +111,9 @@ Yes. The front-end accordion uses `@beapi/be-a11y` with proper ARIA attributes (
 * Initial release with accessible accordion and Yoast SEO FAQPage structured data.
 
 == Upgrade Notice ==
+
+= 2.1.2 =
+Fixes Polylang Autopoly sync for the FAQ question attribute.
 
 = 2.1.0 =
 Adds Rank Math and SEOPress support, configurable question heading levels, and updated block markup. Existing content is preserved via deprecated save handlers.
